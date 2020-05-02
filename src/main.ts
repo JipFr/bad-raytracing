@@ -280,8 +280,13 @@ class Ray {
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {
+		ctx.globalAlpha = 1;
+		ctx.fillStyle = "black";
+		ctx.fillRect(this.visX, this.visY, 10, 10);
+
 		ctx.fillStyle = "#87ceeb";
 		if(this.collidingWith) ctx.fillStyle = this.collidingWith.color ?? "black";
+		if(this.collidingWith && this.collidingWith.color !== "green") ctx.globalAlpha = 1 - (this.travelDistance / this.maxTravelDistance) * 20;
 		ctx.fillRect(this.visX, this.visY, 10, 10);
 	}
 
